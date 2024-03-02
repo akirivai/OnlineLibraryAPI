@@ -1,0 +1,51 @@
+@startuml
+entity "User" as user {
+  + id : Integer
+  --
+  email : String
+  password : String
+  role : String
+}
+
+entity "Book" as book {
+  + id : Integer
+  --
+  title : String
+}
+
+entity "Genre" as genre {
+  + id : Integer
+  --
+  name : String
+}
+
+entity "Author" as author {
+  + id : Integer
+  --
+  name : String
+}
+
+entity "FavoriteBooks" as favorite_books {
+  + id : Integer
+  --
+  user_id : Integer
+  book_id : Integer
+}
+
+entity "BookGenre" as book_genre {
+  + book_id : Integer
+  + genre_id : Integer
+}
+
+entity "BookAuthor" as book_author {
+  + book_id : Integer
+  + author_id : Integer
+}
+
+user ||--o{ favorite_books : has
+book ||--o{ favorite_books : is in
+book ||--o{ book_genre : has
+genre ||--o{ book_genre : is in
+book ||--o{ book_author : has
+author ||--o{ book_author : is in
+@enduml

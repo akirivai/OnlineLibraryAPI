@@ -1,0 +1,46 @@
+@startuml
+class User {
+  - id: int
+  - email: str
+  - password: str
+  - role: str
+}
+
+class Genre {
+  - id: int
+  - name: str
+}
+
+class Author {
+  - id: int
+  - name: str
+}
+
+class Book {
+  - id: int
+  - title: str
+}
+
+class FavoriteBooks {
+  - id: int
+  - user_id: int
+  - book_id: int
+}
+
+class BookGenre {
+  - book_id: int
+  - genre_id: int
+}
+
+class BookAuthor {
+  - book_id: int
+  - author_id: int
+}
+
+User "1" -- "N" FavoriteBooks : has
+Book "M" -- "N" FavoriteBooks : is in
+Book "M" -- "N" BookGenre : has
+Genre "M" -- "N" BookGenre : is in
+Book "M" -- "N" BookAuthor : has
+Author "M" -- "N" BookAuthor : is in
+@enduml
